@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vaulta Access</title>
+
+<style>
+body{
+  margin:0;
+  font-family: 'Courier New', monospace;
+  background:#020000;
+  color:#00ff9f;
+}
+
+/* glitch effect */
+.glow{
+  text-shadow:0 0 10px #00ff9f, 0 0 20px #00ff9f;
+}
+
+.container{
+  max-width:900px;
+  margin:auto;
+  padding:20px;
+}
+
+.center{
+  text-align:center;
+  margin-top:100px;
+}
+
+button{
+  background:transparent;
+  border:1px solid #00ff9f;
+  color:#00ff9f;
+  padding:12px 25px;
+  cursor:pointer;
+  font-family:inherit;
+  margin-top:20px;
+  transition:0.3s;
+}
+
+button:hover{
+  background:#00ff9f;
+  color:#000;
+}
+
+/* hidden screens */
+.screen{
+  display:none;
+}
+
+.active{
+  display:block;
+}
+
+/* terminal box */
+.terminal{
+  background:#000;
+  border:1px solid #00ff9f;
+  padding:20px;
+  margin-top:30px;
+  border-radius:8px;
+}
+
+/* typing effect */
+.typing{
+  border-right:2px solid #00ff9f;
+  white-space:nowrap;
+  overflow:hidden;
+  animation:typing 3s steps(40, end), blink 0.8s infinite;
+}
+
+@keyframes typing{
+  from{ width:0 }
+  to{ width:100% }
+}
+
+@keyframes blink{
+  50%{ border-color:transparent }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<!-- SCREEN 1 -->
+<div id="home" class="center active">
+  <h1 class="glow">VAULTA ACCESS NODE</h1>
+  <p>> Secure Gateway Initialized...</p>
+  <p>> Premium Access Point Software</p>
+  <p class="glow">MIN DEPOSIT: $250</p>
+
+  <button onclick="start()">INITIALIZE ACCESS</button>
+</div>
+
+<!-- SCREEN 2 -->
+<div id="deposit" class="screen">
+
+  <div class="terminal">
+    <p class="typing">> Connecting to secure node...</p>
+    <p>> Authentication Required</p>
+    <p>> Deposit Gateway: USDT (TRC20)</p>
+    <p>> Minimum Deposit: 250 USDT</p>
+
+    <br>
+
+    <p class="glow">WALLET ADDRESS:</p>
+    <p id="wallet">TFiGFVGZfBL8Ueun88As6uz7vTnYmZDhrT</p>
+
+    <button onclick="copyWallet()">COPY ADDRESS</button>
+
+    <br><br>
+
+    <p>> Waiting for transaction confirmation...</p>
+  </div>
+
+</div>
+
+</div>
+
+<script>
+function start(){
+  document.getElementById('home').classList.remove('active');
+  document.getElementById('deposit').classList.add('active');
+}
+
+function copyWallet(){
+  let text = document.getElementById("wallet").innerText;
+  navigator.clipboard.writeText(text);
+  alert("Wallet Address Copied!");
+}
+</script>
+
+</body>
+</html>
